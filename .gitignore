@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+venv/
+.venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# macOS
+.DS_Store
+
+# 분석 결과 (실행 시 생성)
+output/
+visualizations/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# 원본 데이터 (용량 큼)
+*.xlsx
+*.json
+!package.json
