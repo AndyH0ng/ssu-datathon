@@ -10,8 +10,8 @@ from pathlib import Path
 # ============================================================
 
 # 데이터 파일
-NEWS_FILES = ['news_data.xlsx']
-PAPER_FILE = 'datathon_data.json'
+NEWS_FILES = ['data/news_data.xlsx']
+PAPER_FILE = 'data/datathon_data.json'
 
 # 뉴스 카테고리 필터링 (통합 분류1 기준, 제외할 카테고리)
 NEWS_EXCLUDE_CATEGORIES = [
