@@ -10,7 +10,7 @@ import io
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 import pandas as pd
 import json
-from config import NEWS_FILES, PAPER_FILE, normalize_keyword
+from config import NEWS_FILES, PAPER_FILE, OUTPUT_DIR, normalize_keyword, init_dirs
 
 # 분석 대상 키워드 쌍
 TARGET_PAIRS = [
@@ -61,6 +61,7 @@ def extract_paper_mentions():
 
 
 def main():
+    init_dirs()
     print("Phase 5: 키워드 조합별 문서 발췌 및 정리")
     news_mentions = extract_news_mentions()
     paper_mentions = extract_paper_mentions()
@@ -84,9 +85,10 @@ def main():
         'news': tuple_key_to_str(news_mentions),
         'paper': tuple_key_to_str(paper_mentions)
     }
-    with open('phase5_keyword_pair_mentions.json', 'w', encoding='utf-8') as f:
+    output_path = OUTPUT_DIR / 'phase5_keyword_pair_mentions.json'
+    with open(output_path, 'w', encoding='utf-8') as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
-    print("\n결과 저장 완료: phase5_keyword_pair_mentions.json")
+    print(f"\n결과 저장 완료: {output_path}")
 
 
 if __name__ == '__main__':

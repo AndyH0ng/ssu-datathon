@@ -7,7 +7,7 @@ import json
 from collections import Counter
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
-from config import normalize_keyword
+from config import normalize_keyword, VIZ_DIR, OUTPUT_DIR, init_dirs
 
 # 분석 대상 키워드 쌍
 TARGET_PAIRS = [
@@ -18,7 +18,7 @@ TARGET_PAIRS = [
 ]
 
 # 파일 경로
-JSON_PATH = 'phase5_keyword_pair_mentions.json'
+JSON_PATH = OUTPUT_DIR / 'phase5_keyword_pair_mentions.json'
 
 
 def preprocess_text(items, fields, exclude=None):
@@ -48,6 +48,8 @@ def visualize_wordcloud(text, title, save_path):
 
 
 def main():
+    init_dirs()
+
     with open(JSON_PATH, 'r', encoding='utf-8') as f:
         data = json.load(f)
 
@@ -61,7 +63,7 @@ def main():
             fields = ['title', 'category', 'keywords', 'authors']
             # 조합 키워드를 불용어로 제외
             text = preprocess_text(items, fields, exclude=list(pair))
-            save_path = f'wordcloud_{source}_{pair_str}.png'
+            save_path = VIZ_DIR / f'wordcloud_{source}_{pair_str}.png'
             title = f'{source.upper()} | {pair_str} 문서 맥락 워드클라우드'
             visualize_wordcloud(text, title, save_path)
             print(f'{save_path} 저장 완료')
