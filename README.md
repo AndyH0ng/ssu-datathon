@@ -163,21 +163,44 @@ GAP_BLUE_OCEAN_THRESHOLD = 5 # 블루오션 간극 지수 기준
 ## 프로젝트 구조
 
 ```
-.
-├── README.md
-├── requirements.txt
-├── config.py                        # 설정 파일
-├── news_data.xlsx                   # [Raw Data] 뉴스 데이터
-├── datathon_data.json               # [Raw Data] 논문 데이터
-├── phase1_preprocess.py             # Phase 1: 전처리
-├── phase2_tfidf.py                  # Phase 2: TF-IDF
+ssu-datathon/
+├── README.md                        # 프로젝트 설명서
+├── requirements.txt                 # 패키지 의존성
+├── config.py                        # 전체 분석 설정 관리
+│
+├── news_data.xlsx                   # [Raw Data] 뉴스 기사 데이터
+├── datathon_data.json               # [Raw Data] 학술 논문 데이터
+│
+├── phase1_preprocess.py             # Phase 1: 데이터 전처리
+├── phase2_tfidf.py                  # Phase 2: TF-IDF 분석
 ├── phase3_cooccurrence.py           # Phase 3: 동시출현/간극분석
-├── phase4_visualization.py          # Phase 4: 시각화
+├── phase4_visualization.py          # Phase 4: 시각화 생성
 ├── phase5_keyword_pair_mentions.py  # Phase 5: 키워드 조합 분석
-├── phase5_visualize_wordcloud.py    # Phase 5: 워드클라우드
-├── top5_cooccurrence_analysis.py    # 추가 분석
-├── paper_top_co_keywords.py         # 추가 분석
+├── phase5_visualize_wordcloud.py    # Phase 5: 워드클라우드 시각화
+│
+├── top5_cooccurrence_analysis.py    # 상위 5개 키워드 동시출현 분석
+├── paper_top_co_keywords.py         # 논문 주요 키워드와 연관어 분석
+│
 ├── malgun.ttf                       # 한글 폰트 (시각화용)
-├── output/                          # 분석 결과 출력
-└── visualizations/                  # 시각화 이미지 출력
+│
+├── output/                          # 분석 결과 JSON 파일
+│   ├── news_keywords.json           # 뉴스 키워드 빈도
+│   ├── paper_keywords.json          # 논문 키워드 빈도
+│   ├── common_keywords.json         # 공통 키워드
+│   ├── news_tfidf.json              # 뉴스 TF-IDF 결과
+│   ├── paper_tfidf.json             # 논문 TF-IDF 결과
+│   ├── keyword_analysis.json        # 공통/고유 키워드 분석
+│   ├── news_cooccurrence.json       # 뉴스 동시출현 분석
+│   ├── paper_cooccurrence.json      # 논문 동시출현 분석
+│   ├── gap_analysis.json            # 간극 분석 결과
+│   └── phase5_keyword_pair_mentions.json
+│
+└── visualizations/                  # 시각화 이미지 (PNG)
+    ├── 1_gap_analysis.png           # 간극 분석 차트
+    ├── 2_scatter_comparison.png     # 산점도 비교
+    ├── 3_tfidf_comparison.png       # TF-IDF 비교
+    ├── 4_cooccurrence_heatmap.png   # 동시출현 히트맵
+    ├── 5_category_comparison.png    # 카테고리 비교
+    ├── 6_frequency_comparison.png   # 빈도 비교
+    └── wordcloud_*.png              # 키워드 조합별 워드클라우드
 ```
